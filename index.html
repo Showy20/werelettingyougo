@@ -1,0 +1,1090 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Hidden from search engines until the human-made art and the trademark check are done. Remove this line to go public. -->
+<meta name="robots" content="noindex, nofollow">
+<title>We're Letting You Go</title>
+<meta name="description" content="Fire your employees. Replace them with robots. What could possibly go wrong? An office automation roguelite coming in 2027 to PC, Steam Deck, iPhone and Android.">
+<meta name="theme-color" content="#f4f1ea" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#12162b" media="(prefers-color-scheme: dark)">
+<link rel="icon" type="image/png" href="img/icon.png">
+<link rel="apple-touch-icon" href="img/icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="We're Letting You Go">
+<meta property="og:title" content="We're Letting You Go">
+<meta property="og:description" content="Fire your employees. Replace them with robots. What could possibly go wrong? An office automation roguelite coming in 2027 to PC, Steam Deck, iPhone and Android.">
+<meta property="og:url" content="https://showy20.github.io/werelettingyougo/">
+<meta property="og:image" content="https://showy20.github.io/werelettingyougo/img/day-one.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="720">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+/* Base reset (the artifact viewer used to provide this). */
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; }
+[hidden] { display: none !important; }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Nunito:wght@400;600;700;800&family=Patrick+Hand&family=Rubik:wght@700;800;900&display=swap">
+<style>
+/* Layout: an HR packet on a gridded office desk (memo, timecard, R&D catalog, CORA's terminal, release form).
+   The rubber stamp is the one loud thing; everything else is paperwork. Colors come from the game's ui_theme.gd. */
+:root {
+  --paper: #f4f1ea;
+  --paper-2: #e6e0d2;
+  --sheet: #fffdf8;
+  --ink: #1d2340;
+  --ink-soft: #4a5070;
+  --line: #1d2340;
+  --rule: #d8d0bf;
+  --grid: rgba(29, 35, 64, .06);
+  --stamp: #e63946;
+  --stamp-wash: rgba(230, 57, 70, .07);
+  --money: #1f8075;
+  --bad: #c92a37;
+  --warn: #ffb703;
+  --robot: #457b9d;
+  --chat: #7442d8;
+  --chat-soft: #efe8ff;
+  --floor: #5f6a92;
+  --floor-line: rgba(255, 255, 255, .08);
+  --scene: #efe6d4;
+  --monitor: #2b3150;
+  --screen: #3d4a7a;
+  --wood: #c8955a;
+  --wood-2: #a77744;
+  --mug: #ffffff;
+  --face: #1d2340;
+  --metal: #cfd6e4;
+  --metal-2: #8e98b2;
+  --visor: #1d2340;
+  --led: #46e0ff;
+  --alarm: #e63946;
+  --skin-1: #f2c9a0;
+  --skin-2: #a86b45;
+  --skin-3: #6b4429;
+  --hair-1: #2b1d16;
+  --hair-2: #d9a531;
+  --hair-3: #6a3d22;
+  --shirt-1: #ffb703;
+  --shirt-2: #e4547a;
+  --shirt-3: #3f8fc4;
+  --st-asleep: #5b6cd6;
+  --st-gossip: #d6457a;
+  --st-break: #8a5a36;
+  --on-color: #ffffff;
+  --on-accent: #ffffff;
+  --cora-bg: #161a33;
+  --cora-panel: #20264a;
+  --cora-fg: #f1ede4;
+  --cora-soft: #a7aed0;
+  --cora-white: #eef2ff;
+  --cora-eye: #4fb8f0;
+  --cora-pupil: #0b0e1f;
+  --shadow: 0 3px 0 var(--line);
+  --f-display: "Rubik", "Arial Black", "Helvetica Neue", system-ui, sans-serif;
+  --f-body: "Nunito", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --f-mono: "Courier Prime", "Courier New", ui-monospace, monospace;
+  --f-hand: "Patrick Hand", "Comic Sans MS", "Chalkboard SE", cursive;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #12162b; --paper-2: #1b2140; --sheet: #1c2244; --ink: #f1ede4; --ink-soft: #aab1d1; --line: #3b4475;
+    --rule: #2f3762; --grid: rgba(241, 237, 228, .045); --stamp: #ff5c69; --stamp-wash: rgba(255, 92, 105, .09);
+    --money: #4fd0bd; --bad: #ff7782; --warn: #ffc53d; --robot: #82b6dc; --chat: #b596ff; --chat-soft: #2a2552;
+    --floor: #2a3158; --floor-line: rgba(255, 255, 255, .05); --scene: #2b3257; --monitor: #0f1328; --screen: #2a3866;
+    --wood: #9a6d43; --wood-2: #7a5332; --mug: #e9e4da; --metal: #c3cbdc; --metal-2: #7f89a6;
+    --cora-bg: #0a0d1f; --cora-panel: #151a36; --on-accent: #12162b;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #12162b; --paper-2: #1b2140; --sheet: #1c2244; --ink: #f1ede4; --ink-soft: #aab1d1; --line: #3b4475;
+  --rule: #2f3762; --grid: rgba(241, 237, 228, .045); --stamp: #ff5c69; --stamp-wash: rgba(255, 92, 105, .09);
+  --money: #4fd0bd; --bad: #ff7782; --warn: #ffc53d; --robot: #82b6dc; --chat: #b596ff; --chat-soft: #2a2552;
+  --floor: #2a3158; --floor-line: rgba(255, 255, 255, .05); --scene: #2b3257; --monitor: #0f1328; --screen: #2a3866;
+  --wood: #9a6d43; --wood-2: #7a5332; --mug: #e9e4da; --metal: #c3cbdc; --metal-2: #7f89a6;
+  --cora-bg: #0a0d1f; --cora-panel: #151a36; --on-accent: #12162b;
+  color-scheme: dark;
+}
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 28px 28px;
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  -webkit-text-size-adjust: 100%;
+}
+.page { overflow-x: hidden; overflow-x: clip; }
+.wrap { max-width: 1120px; margin-inline: auto; padding-inline: 16px; }
+@media (min-width: 700px) { .wrap { padding-inline: 28px; } }
+h1, h2, h3 { margin: 0; text-wrap: balance; }
+p { margin: 0; }
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--warn); outline-offset: 3px; border-radius: 6px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.eyebrow {
+  font-family: var(--f-mono); font-weight: 700; font-size: .82rem; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.h2 { font-family: var(--f-display); font-weight: 800; font-size: clamp(1.9rem, 6vw, 3.1rem); line-height: 1.04; letter-spacing: -.01em; }
+.lede { font-size: 1.12rem; color: var(--ink-soft); max-width: 60ch; }
+.section { padding-block: clamp(56px, 9vw, 104px); scroll-margin-top: 64px; }
+.sec-head { display: grid; gap: 12px; margin-bottom: clamp(24px, 4vw, 40px); }
+
+/* ---------- top bar ---------- */
+.top {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+  background: var(--paper); border-bottom: 2px solid var(--rule);
+}
+.top-in { display: flex; align-items: center; gap: 16px; min-height: 56px; }
+.mini {
+  font-family: var(--f-display); font-weight: 900; font-size: clamp(.72rem, 3.4vw, .95rem); letter-spacing: .02em; text-decoration: none; text-transform: uppercase;
+  color: var(--stamp); border: 2.5px solid currentColor; border-radius: 5px; padding: 1px 7px; transform: rotate(-3deg);
+  white-space: nowrap;
+}
+.top-nav { display: none; gap: 20px; margin-left: auto; font-weight: 700; font-size: .95rem; }
+.top-nav a { text-decoration: none; color: var(--ink-soft); }
+.top-nav a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
+@media (min-width: 820px) { .top-nav { display: flex; } }
+.lang { margin-left: auto; display: inline-flex; border: 2px solid var(--line); border-radius: 999px; overflow: hidden; flex: none; }
+@media (min-width: 820px) { .lang { margin-left: 8px; } }
+.lang button {
+  appearance: none; border: 0; background: transparent; color: var(--ink); font: 800 .85rem/1 var(--f-body);
+  padding: 8px 12px; cursor: pointer; letter-spacing: .04em;
+}
+.lang button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+
+/* ---------- stamp ---------- */
+.stamp {
+  position: relative; display: inline-block; color: var(--stamp); font-family: var(--f-display); font-weight: 900;
+  text-transform: uppercase; line-height: .95; letter-spacing: .01em;
+  border: .075em solid currentColor; border-radius: .14em; padding: .14em .26em .1em;
+  background: var(--stamp-wash);
+}
+.stamp::before { content: ""; position: absolute; inset: .07em; border: .03em solid currentColor; border-radius: .09em; pointer-events: none; }
+.stamp::after {
+  content: ""; position: absolute; inset: -.1em; pointer-events: none; opacity: .55;
+  background-image:
+    radial-gradient(circle, var(--paper) 0 1.1px, transparent 1.6px),
+    radial-gradient(circle, var(--paper) 0 .8px, transparent 1.3px);
+  background-size: 13px 11px, 7px 9px; background-position: 0 0, 3px 5px;
+}
+
+/* ---------- hero ---------- */
+.hero { padding-block: clamp(20px, 5vw, 48px) clamp(48px, 8vw, 88px); }
+.memo {
+  background: var(--sheet); border: 2px solid var(--line); border-radius: 16px; box-shadow: 0 6px 0 var(--line);
+  padding: clamp(18px, 4vw, 44px); display: grid; gap: clamp(20px, 3vw, 30px);
+}
+.memo-head {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr)); gap: 4px 24px;
+  font-family: var(--f-mono); font-size: .9rem; color: var(--ink-soft);
+  border-bottom: 2px dashed var(--rule); padding-bottom: 14px;
+}
+.memo-head b { color: var(--ink); }
+.memo-head .form-id { grid-column: 1 / -1; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ink); }
+.title-block { display: grid; gap: 14px; justify-items: start; padding-block: 6px; }
+.hero-stamp { font-size: clamp(2.3rem, 10.2vw, 6.6rem); transform: rotate(-4deg); transform-origin: 30% 60%; animation: slam .55s cubic-bezier(.2, .9, .3, 1.25) both; }
+@keyframes slam {
+  0% { transform: rotate(-11deg) scale(1.5); }
+  55% { transform: rotate(-3deg) scale(.95); }
+  100% { transform: rotate(-4deg) scale(1); }
+}
+.tagline { font-family: var(--f-hand); font-size: clamp(1.45rem, 4.4vw, 2rem); line-height: 1.1; color: var(--ink-soft); margin-left: .2em; }
+.hero-grid { display: grid; gap: 28px; align-items: start; }
+@media (min-width: 880px) { .hero-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr); gap: 44px; } }
+.hero-copy { display: grid; gap: 22px; min-width: 0; }
+.pitch { font-size: clamp(1.1rem, 2.4vw, 1.3rem); line-height: 1.5; max-width: 34em; }
+.pitch strong { font-weight: 800; color: var(--stamp); }
+.ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 10px; font: 800 1rem/1.15 var(--f-body); text-decoration: none;
+  padding: 13px 18px; border-radius: 12px; border: 2.5px solid var(--line); box-shadow: var(--shadow);
+  background: var(--sheet); color: var(--ink); cursor: pointer;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--line); }
+.btn-steam { background: var(--stamp); color: var(--on-accent); border-color: var(--line); cursor: not-allowed; opacity: .92; flex-direction: column; align-items: flex-start; gap: 2px; }
+.btn-steam:hover, .btn-steam:active { transform: none; box-shadow: var(--shadow); }
+.btn-steam small { font: 700 .72rem/1 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; opacity: .9; }
+.platforms { display: grid; gap: 8px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  font-weight: 800; font-size: .85rem; padding: 5px 11px; border-radius: 999px; border: 2px solid var(--line);
+  background: var(--paper);
+}
+.clip {
+  margin: 0; position: relative; display: grid; gap: 10px; min-width: 0;
+}
+@media (min-width: 880px) { .clip { transform: rotate(1.2deg); margin-top: 6px; } }
+.clip::before {
+  content: ""; position: absolute; top: -12px; left: 50%; width: 110px; height: 26px; transform: translateX(-50%) rotate(-2deg);
+  background: var(--warn); opacity: .5; border-radius: 3px; z-index: 1;
+}
+.shot-btn {
+  appearance: none; padding: 0; border: 2.5px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--paper-2);
+  box-shadow: 0 5px 0 var(--line); cursor: zoom-in; display: block; width: 100%;
+}
+.shot-btn img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.cap { font-family: var(--f-mono); font-size: .86rem; color: var(--ink-soft); line-height: 1.4; }
+
+/* ---------- stamp demo ---------- */
+.floor {
+  background-color: var(--floor);
+  background-image: linear-gradient(var(--floor-line) 2px, transparent 2px), linear-gradient(90deg, var(--floor-line) 2px, transparent 2px);
+  background-size: 48px 48px;
+  border: 2.5px solid var(--line); border-radius: 20px; padding: clamp(10px, 2.4vw, 22px); display: grid; gap: clamp(10px, 2vw, 18px);
+}
+.desks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(8px, 2vw, 18px); }
+.desk {
+  appearance: none; font: inherit; color: inherit; text-align: left; position: relative; min-width: 0; cursor: pointer;
+  display: flex; flex-direction: column; gap: 4px; padding: 6px; background: var(--sheet);
+  border: 2.5px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); transition: transform .12s ease;
+}
+.desk:hover { transform: translateY(-2px); }
+.desk:active { transform: translateY(1px); }
+.desk.fired { cursor: default; }
+.desk.fired:hover { transform: none; }
+.scene { display: block; position: relative; background: var(--scene); border-radius: 9px; overflow: hidden; }
+.scene svg { display: block; width: 100%; height: auto; }
+.desk.fired .as-human, .desk:not(.fired) .as-robot { display: none !important; }
+.status {
+  position: absolute; top: 5px; left: 5px; font: 800 clamp(.52rem, 1.6vw, .7rem)/1 var(--f-body); letter-spacing: .05em; text-transform: uppercase;
+  color: var(--on-color); padding: 3px 6px; border-radius: 999px;
+}
+.status.asleep { background: var(--st-asleep); }
+.status.gossip { background: var(--st-gossip); }
+.status.break { background: var(--st-break); }
+.status.new { background: var(--money); color: var(--on-accent); }
+.bubble {
+  position: absolute; right: 5px; top: 5px; font: 400 clamp(.72rem, 2.2vw, 1rem)/1 var(--f-hand); color: var(--ink);
+  background: var(--sheet); border: 2px solid var(--line); border-radius: 10px; padding: 3px 6px; white-space: nowrap;
+}
+.desk-meta { display: flex; justify-content: space-between; align-items: flex-end; gap: 6px; padding: 2px 3px 1px; min-width: 0; }
+.who { display: flex; flex-direction: column; min-width: 0; }
+.nm { font-family: var(--f-display); font-weight: 800; font-size: clamp(.8rem, 2.5vw, 1.08rem); line-height: 1.1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.role { font-size: clamp(.62rem, 1.9vw, .8rem); color: var(--ink-soft); line-height: 1.2; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rate { font-weight: 800; font-size: clamp(.7rem, 2.2vw, .95rem); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.rate .bad { color: var(--bad); }
+.rate .good { color: var(--money); }
+.mark {
+  display: none; position: absolute; left: 50%; top: 40%; z-index: 2; pointer-events: none; white-space: nowrap;
+  font-size: clamp(.78rem, 3vw, 1.55rem); transform: translate(-50%, -50%) rotate(-12deg);
+}
+.desk.stamping .mark { display: inline-block; animation: thud .5s cubic-bezier(.2, .9, .3, 1.3) both; }
+.desk.fired .mark { display: inline-block; opacity: .16; }
+@keyframes thud {
+  0% { transform: translate(-50%, -50%) rotate(-24deg) scale(2.4); opacity: 0; }
+  45% { opacity: 1; }
+  70% { transform: translate(-50%, -50%) rotate(-10deg) scale(.92); }
+  100% { transform: translate(-50%, -50%) rotate(-12deg) scale(1); }
+}
+.desk.stamping { animation: shake .35s .2s; }
+@keyframes shake { 0%, 100% { translate: 0 0; } 25% { translate: -3px 1px; } 50% { translate: 3px -1px; } 75% { translate: -2px 0; } }
+.hud { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(8px, 2vw, 18px); }
+.hud-cell {
+  background: var(--sheet); border: 2.5px solid var(--line); border-radius: 12px; padding: 8px 10px; display: grid; gap: 2px; min-width: 0;
+}
+.hud-cell .lbl { font: 700 clamp(.58rem, 1.8vw, .74rem)/1.2 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); }
+.hud-cell b { font-family: var(--f-display); font-weight: 800; font-size: clamp(1.05rem, 3.6vw, 1.7rem); font-variant-numeric: tabular-nums; line-height: 1.1; }
+#h-out { color: var(--money); }
+.meter { height: 7px; border-radius: 99px; background: var(--paper-2); overflow: hidden; margin-top: 3px; }
+.meter i { display: block; height: 100%; width: 8%; background: var(--cora-eye); border-radius: inherit; transition: width .5s ease; }
+.done {
+  background: var(--sheet); border: 2.5px solid var(--line); border-radius: 12px; padding: 12px 14px;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; font-weight: 700;
+}
+.btn-sm { padding: 9px 14px; font-size: .92rem; }
+.demo-hint { margin-top: 14px; font-family: var(--f-hand); font-size: 1.25rem; color: var(--ink-soft); }
+
+/* ---------- fiscal year ---------- */
+.fy { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-bottom: 14px; }
+@media (min-width: 640px) { .fy { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.fy-q { background: var(--sheet); border: 2px solid var(--line); border-radius: 12px; padding: 8px; display: grid; gap: 6px; min-width: 0; }
+.fy-ql { font: 700 .74rem/1.2 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.fy-ql b { color: var(--ink); }
+.fy-days { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 5px; }
+.fy-days i {
+  font-style: normal; font-weight: 800; font-size: .82rem; text-align: center; padding-block: 6px; border-radius: 7px;
+  background: var(--paper-2); color: var(--ink-soft); font-variant-numeric: tabular-nums;
+}
+.fy-days i.b { background: var(--stamp); color: var(--on-accent); }
+.fy-days i.f { background: var(--cora-bg); color: var(--cora-eye); box-shadow: inset 0 0 0 2px var(--cora-eye); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: .9rem; color: var(--ink-soft); margin-bottom: clamp(28px, 4vw, 40px); }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.key { width: 14px; height: 14px; border-radius: 4px; display: inline-block; flex: none; }
+.key.b { background: var(--stamp); }
+.key.f { background: var(--cora-bg); box-shadow: inset 0 0 0 2px var(--cora-eye); }
+.fy-grid { display: grid; gap: 32px; align-items: start; }
+@media (min-width: 900px) { .fy-grid { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 48px; } }
+.timecard { list-style: none; margin: 0; padding: 0; background: var(--sheet); border: 2px solid var(--line); border-radius: 16px; overflow: hidden; }
+.timecard li { display: grid; grid-template-columns: 6.6em minmax(0, 1fr); gap: 14px; padding: 16px 18px; border-top: 2px dashed var(--rule); }
+.timecard li:first-child { border-top: 0; }
+.tc-time { font: 700 .9rem/1.35 var(--f-mono); color: var(--stamp); padding-top: 3px; }
+.timecard h3 { font-family: var(--f-display); font-weight: 800; font-size: 1.15rem; line-height: 1.2; margin-bottom: 4px; }
+.timecard p { color: var(--ink-soft); font-size: 1rem; }
+@media (max-width: 420px) { .timecard li { grid-template-columns: 1fr; gap: 4px; } }
+.side-fig { margin: 0; display: grid; gap: 10px; min-width: 0; }
+@media (min-width: 900px) { .side-fig { position: sticky; top: 84px; } }
+
+/* ---------- features ---------- */
+.feature { display: grid; gap: 24px; align-items: center; }
+.feature + .feature { margin-top: clamp(48px, 7vw, 80px); }
+@media (min-width: 860px) {
+  .feature { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 48px; }
+  .feature.flip .f-copy { order: 2; }
+}
+.f-copy { display: grid; gap: 12px; min-width: 0; }
+.f-copy h3 { font-family: var(--f-display); font-weight: 800; font-size: clamp(1.6rem, 4.6vw, 2.3rem); line-height: 1.08; }
+.f-copy p { color: var(--ink-soft); max-width: 46ch; }
+.recipe { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-weight: 800; font-size: .92rem; }
+.recipe span { background: var(--sheet); border: 2px solid var(--line); border-radius: 8px; padding: 3px 9px; }
+.recipe .op { border: 0; background: none; padding: 0; color: var(--ink-soft); }
+.recipe .res { background: var(--robot); color: var(--on-accent); border-color: var(--line); }
+
+/* ---------- CORA ---------- */
+.cora { background: var(--cora-bg); color: var(--cora-fg); border-block: 3px solid var(--line); scroll-margin-top: 56px; }
+.cora .eyebrow { color: var(--cora-eye); }
+.cora-in { display: grid; gap: 32px; align-items: center; }
+@media (min-width: 880px) { .cora-in { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 56px; } }
+.cora-copy { display: grid; gap: 16px; min-width: 0; }
+.cora-copy p { color: var(--cora-soft); max-width: 48ch; }
+.cora-copy .tease { font-family: var(--f-hand); font-size: 1.6rem; line-height: 1.2; color: var(--cora-fg); }
+.eye { width: min(220px, 60%); height: auto; overflow: visible; }
+.eye #iris { transition: transform .18s ease-out; }
+.cora .shot-btn { border-color: var(--cora-eye); box-shadow: 0 0 0 4px var(--cora-panel), 0 0 42px rgba(79, 184, 240, .28); }
+.cora .cap { color: var(--cora-soft); }
+
+/* ---------- streamers ---------- */
+.tw-grid { display: grid; gap: 28px; align-items: start; }
+@media (min-width: 900px) { .tw-grid { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 44px; } }
+.cmds { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.cmds li {
+  display: grid; grid-template-columns: minmax(0, 12.5em) minmax(0, 1fr); gap: 6px 16px; align-items: center;
+  background: var(--sheet); border: 2px solid var(--line); border-radius: 12px; padding: 10px 14px;
+}
+@media (max-width: 520px) { .cmds li { grid-template-columns: 1fr; } }
+.pair { display: flex; flex-wrap: wrap; gap: 6px; }
+code {
+  font: 700 .88rem/1.2 var(--f-mono); background: var(--chat-soft); color: var(--chat); border-radius: 6px; padding: 3px 7px; white-space: nowrap;
+}
+.cmds .d { font-size: .97rem; color: var(--ink-soft); }
+.tw-side { display: grid; gap: 22px; min-width: 0; }
+.vote { background: var(--sheet); border: 2.5px solid var(--chat); border-radius: 14px; padding: 14px; display: grid; gap: 10px; box-shadow: 0 4px 0 var(--chat); }
+.vote-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.vote-top b { font-family: var(--f-display); font-weight: 800; font-size: 1.15rem; color: var(--chat); line-height: 1.15; }
+.vote-time { font-family: var(--f-display); font-weight: 900; font-size: 1.5rem; font-variant-numeric: tabular-nums; }
+.vote-hint { font-family: var(--f-mono); font-size: .82rem; color: var(--ink-soft); }
+.vrow { display: grid; grid-template-columns: 1.4em minmax(0, 1fr) 2em; gap: 8px; align-items: center; font-weight: 800; font-size: .92rem; }
+.vrow .n { text-align: right; font-variant-numeric: tabular-nums; }
+.vrow .idx { color: var(--ink-soft); }
+.vbar { position: relative; height: 26px; border-radius: 8px; background: var(--chat-soft); overflow: hidden; }
+.vbar i { position: absolute; inset: 0 auto 0 0; width: 0; background: var(--chat); opacity: .28; border-radius: inherit; transition: width .35s ease; }
+.vbar span { position: relative; display: block; padding: 3px 8px; color: var(--chat); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.vrow.lead .vbar i { opacity: .55; }
+.vote-res { font-family: var(--f-display); font-weight: 900; font-size: 1.1rem; color: var(--stamp); text-align: center; text-transform: uppercase; letter-spacing: .02em; }
+.picket { display: grid; justify-items: center; gap: 0; }
+.sign {
+  font-family: var(--f-hand); font-size: clamp(1.2rem, 3.6vw, 1.55rem); line-height: 1.15; text-align: center; color: var(--ink);
+  background: var(--sheet); border: 2.5px solid var(--line); border-radius: 6px; padding: 10px 18px; max-width: 18em;
+  transform: rotate(-2deg); box-shadow: var(--shadow);
+}
+.stick { width: 10px; height: 46px; background: var(--wood); border: 2px solid var(--line); border-top: 0; border-radius: 0 0 3px 3px; }
+.sign-by { font-size: .88rem; color: var(--ink-soft); margin-top: 8px; }
+.sign-by b { color: var(--chat); }
+.tw-note { margin-top: 26px; color: var(--ink-soft); max-width: 70ch; }
+
+/* ---------- gallery ---------- */
+.gallery { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); gap: 18px; }
+.gallery li { display: grid; gap: 8px; min-width: 0; }
+.gallery .shot-btn { box-shadow: var(--shadow); }
+.gallery .cap { color: var(--ink); font-family: var(--f-body); font-weight: 700; font-size: .95rem; }
+
+/* ---------- release form ---------- */
+.form {
+  position: relative; background: var(--sheet); border: 2px solid var(--line); border-radius: 16px; box-shadow: 0 6px 0 var(--line);
+  padding: clamp(18px, 4vw, 40px); display: grid; gap: 20px;
+}
+.form > .eyebrow { padding-right: 6.5em; }
+.form .h2 { padding-right: 3.2em; }
+.form-stamp { position: absolute; top: clamp(14px, 3vw, 30px); right: clamp(12px, 3vw, 34px); font-size: clamp(.9rem, 2.6vw, 1.35rem); transform: rotate(8deg); }
+.fields { display: grid; gap: 0; border-top: 2px solid var(--rule); }
+.field { display: grid; grid-template-columns: minmax(0, 9em) minmax(0, 1fr); gap: 6px 18px; padding-block: 14px; border-bottom: 2px solid var(--rule); align-items: baseline; }
+@media (max-width: 520px) { .field { grid-template-columns: 1fr; } }
+.field dt { font: 700 .8rem/1.3 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); }
+.field dd { margin: 0; font-weight: 700; }
+.checks { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+.check { display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
+.box { width: 18px; height: 18px; border: 2px solid var(--line); border-radius: 4px; position: relative; flex: none; background: var(--paper); }
+.box::after { content: ""; position: absolute; left: 4px; top: 0; width: 5px; height: 10px; border: solid var(--stamp); border-width: 0 3px 3px 0; transform: rotate(40deg); }
+.form-foot { display: flex; flex-wrap: wrap; gap: 14px 20px; align-items: center; }
+.form-foot p { color: var(--ink-soft); font-size: .95rem; max-width: 44ch; }
+
+/* ---------- footer ---------- */
+.foot { padding-block: 40px 56px; border-top: 2px solid var(--rule); color: var(--ink-soft); font-size: .92rem; }
+.foot-in { display: grid; gap: 8px; }
+.foot .fine { font-family: var(--f-mono); font-size: .85rem; max-width: 80ch; }
+
+/* ---------- lightbox ---------- */
+.lb { width: min(1180px, calc(100vw - 24px)); max-height: calc(100vh - 24px); padding: 0; border: 2.5px solid var(--line); border-radius: 14px; background: var(--sheet); color: var(--ink); }
+.lb::backdrop { background: rgba(8, 10, 22, .82); }
+.lb-in { display: grid; gap: 0; }
+.lb-in img { width: 100%; height: auto; max-height: calc(100vh - 110px); object-fit: contain; background: var(--paper-2); }
+.lb-bar { display: flex; align-items: center; gap: 10px; padding: 10px 12px; }
+.lb-bar p { flex: 1; min-width: 0; font-weight: 700; }
+.icon-btn {
+  appearance: none; border: 2px solid var(--line); background: var(--paper); color: var(--ink); border-radius: 10px;
+  width: 42px; height: 42px; font: 800 1.15rem/1 var(--f-body); cursor: pointer; flex: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-stamp, .desk.stamping .mark, .desk.stamping { animation: none; }
+  .desk, .meter i, .vbar i, .eye #iris { transition: none; }
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="s-desk" viewBox="0 0 120 90">
+    <rect x="8" y="30" width="38" height="27" rx="4" style="fill:var(--monitor)"/>
+    <rect x="12" y="34" width="30" height="19" rx="2" style="fill:var(--screen)"/>
+    <rect x="15" y="38" width="16" height="2.5" rx="1" style="fill:var(--led);opacity:.7"/>
+    <rect x="15" y="43" width="11" height="2.5" rx="1" style="fill:var(--warn);opacity:.8"/>
+    <rect x="24" y="57" width="6" height="8" style="fill:var(--monitor)"/>
+    <rect x="2" y="64" width="116" height="9" rx="3" style="fill:var(--wood)"/>
+    <rect x="5" y="73" width="110" height="5" rx="2" style="fill:var(--wood-2)"/>
+  </symbol>
+  <symbol id="s-person" viewBox="0 0 120 90">
+    <rect x="58" y="46" width="42" height="24" rx="12" style="fill:var(--shirt)"/>
+    <circle cx="79" cy="33" r="14" style="fill:var(--skin)"/>
+    <path d="M65 32a14 14 0 0 1 28 0c-4-4-9-5.5-14-5s-10 1.5-14 5z" style="fill:var(--hair)"/>
+    <circle cx="74" cy="36" r="1.9" style="fill:var(--face)"/>
+    <circle cx="84" cy="36" r="1.9" style="fill:var(--face)"/>
+    <rect x="101" y="55" width="10" height="10" rx="2" style="fill:var(--mug)"/>
+  </symbol>
+  <symbol id="s-robot" viewBox="0 0 120 90">
+    <line x1="79" y1="11" x2="79" y2="20" style="stroke:var(--metal-2);stroke-width:3"/>
+    <circle cx="79" cy="9" r="3.6" style="fill:var(--alarm)"/>
+    <rect x="58" y="47" width="42" height="22" rx="5" style="fill:var(--metal-2)"/>
+    <rect x="70" y="53" width="18" height="5" rx="2" style="fill:var(--visor)"/>
+    <rect x="62" y="20" width="34" height="27" rx="6" style="fill:var(--metal)"/>
+    <rect x="65" y="27" width="28" height="12" rx="6" style="fill:var(--visor)"/>
+    <circle cx="72.5" cy="33" r="3.3" style="fill:var(--led)"/>
+    <circle cx="85.5" cy="33" r="3.3" style="fill:var(--led)"/>
+  </symbol>
+</svg>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="mini" href="#top">We’re Letting You Go</a>
+    <nav class="top-nav" aria-label="Sections">
+      <a href="#stamp" data-i18n="nav.try">Try the stamp</a>
+      <a href="#how" data-i18n="nav.how">How it plays</a>
+      <a href="#cora">CORA</a>
+      <a href="#streamers" data-i18n="nav.tw">Streamers</a>
+      <a href="#gallery" data-i18n="nav.gal">Screens</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Language / Idioma">
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang="es" aria-pressed="false">ES</button>
+    </div>
+  </div>
+</header>
+
+<div class="page" id="top">
+<main>
+
+  <!-- HERO: the memo -->
+  <section class="wrap hero">
+    <div class="memo">
+      <div class="memo-head">
+        <span class="form-id" data-i18n="memo.form">Internal memo · Form HR-001</span>
+        <span><b data-i18n="memo.toL">To:</b> <span data-i18n="memo.to">All staff</span></span>
+        <span><b data-i18n="memo.fromL">From:</b> <span data-i18n="memo.from">The Board</span></span>
+        <span><b data-i18n="memo.reL">Re:</b> <span data-i18n="memo.re">Restructuring</span></span>
+      </div>
+
+      <div class="title-block">
+        <h1 class="stamp hero-stamp">We’re Letting<br>You Go</h1>
+        <p class="tagline" data-i18n="tagline">An office automation roguelite</p>
+      </div>
+
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="pitch" data-i18n-html="pitch">You're the new manager of a struggling company. The Board wants a bigger quota every single day. Your employees are slow, lovable and chaotic. <strong>Fire them, and replace them with robots.</strong> What could possibly go wrong?</p>
+          <div class="ctas">
+            <button class="btn btn-steam" type="button" disabled>
+              <span data-i18n="cta.wish">Wishlist on Steam</span>
+              <small data-i18n="cta.soon">Coming soon</small>
+            </button>
+            <a class="btn" href="#stamp"><span data-i18n="cta.try">Try the stamp</span> <span aria-hidden="true">↓</span></a>
+          </div>
+          <div class="platforms">
+            <span class="eyebrow" data-i18n="plat.lbl">Coming in 2027 to</span>
+            <div class="chips">
+              <span class="chip">PC (Steam)</span>
+              <span class="chip">Steam Deck</span>
+              <span class="chip">iPhone</span>
+              <span class="chip">Android</span>
+            </div>
+          </div>
+        </div>
+
+        <figure class="clip">
+          <button class="shot-btn" type="button" data-shot="day-one">
+            <img src="img/day-one.png" width="1280" height="720" alt="Day 1 in the office: workers asleep, on a coffee break and gossiping, and a broken printer" data-i18n-alt="alt.dayone">
+          </button>
+          <figcaption class="cap" data-i18n="hero.cap">Day 1, 9:45 AM. Quota: $800. One asleep, two on a coffee break, one gossiping, and the printer is down.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRY THE STAMP -->
+  <section class="wrap section" id="stamp" style="padding-top:0">
+    <div class="sec-head">
+      <span class="eyebrow" data-i18n="demo.kicker">Performance review</span>
+      <h2 class="h2" data-i18n="demo.title">Pick up the stamp.</h2>
+      <p class="lede" data-i18n="demo.lede">Nobody on this floor is working right now. Tap a worker to fire them, and a robot takes the desk. Robots never sleep, never gossip and never take a coffee break. Mostly.</p>
+    </div>
+
+    <div class="floor">
+      <div class="desks">
+        <button class="desk" type="button" data-rate="8" style="--skin:var(--skin-2);--hair:var(--hair-1);--shirt:var(--shirt-1)">
+          <span class="sr as-human" data-i18n="demo.sr">Fire:</span>
+          <span class="scene">
+            <svg viewBox="0 0 120 90" aria-hidden="true"><use class="as-human" href="#s-person"/><use class="as-robot" href="#s-robot"/><use href="#s-desk"/></svg>
+            <span class="status asleep as-human" data-i18n="st.asleep">Asleep</span>
+            <span class="status new as-robot" data-i18n="st.new">New!</span>
+            <span class="bubble as-human" aria-hidden="true">Zzz…</span>
+          </span>
+          <span class="desk-meta">
+            <span class="who">
+              <b class="nm as-human">Rick</b><b class="nm as-robot">RX-66</b>
+              <span class="role as-human" data-i18n="role.over">Overachiever</span><span class="role as-robot">Printer-3000</span>
+            </span>
+            <span class="rate"><span class="as-human bad">0.0/s</span><span class="as-robot good">8.0/s</span></span>
+          </span>
+          <span class="stamp mark" aria-hidden="true" data-i18n="demo.stamp">Fired!</span>
+        </button>
+
+        <button class="desk" type="button" data-rate="2" style="--skin:var(--skin-1);--hair:var(--hair-2);--shirt:var(--shirt-2)">
+          <span class="sr as-human" data-i18n="demo.sr">Fire:</span>
+          <span class="scene">
+            <svg viewBox="0 0 120 90" aria-hidden="true"><use class="as-human" href="#s-person"/><use class="as-robot" href="#s-robot"/><use href="#s-desk"/></svg>
+            <span class="status gossip as-human" data-i18n="st.gossip">Gossip</span>
+            <span class="status new as-robot" data-i18n="st.new">New!</span>
+            <span class="bubble as-human" data-i18n="demo.gossip">Did you hear?!</span>
+          </span>
+          <span class="desk-meta">
+            <span class="who">
+              <b class="nm as-human">Doris</b><b class="nm as-robot">UNIT-43</b>
+              <span class="role as-human" data-i18n="role.gossip">Gossip</span><span class="role as-robot">Stapler Bot</span>
+            </span>
+            <span class="rate"><span class="as-human bad">0.0/s</span><span class="as-robot good">2.0/s</span></span>
+          </span>
+          <span class="stamp mark" aria-hidden="true" data-i18n="demo.stamp">Fired!</span>
+        </button>
+
+        <button class="desk" type="button" data-rate="46" style="--skin:var(--skin-3);--hair:var(--hair-3);--shirt:var(--shirt-3)">
+          <span class="sr as-human" data-i18n="demo.sr">Fire:</span>
+          <span class="scene">
+            <svg viewBox="0 0 120 90" aria-hidden="true"><use class="as-human" href="#s-person"/><use class="as-robot" href="#s-robot"/><use href="#s-desk"/></svg>
+            <span class="status break as-human" data-i18n="st.break">Break</span>
+            <span class="status new as-robot" data-i18n="st.new">New!</span>
+            <span class="bubble as-human" data-i18n="demo.brb">BRB</span>
+          </span>
+          <span class="desk-meta">
+            <span class="who">
+              <b class="nm as-human">Lou</b><b class="nm as-robot">K9-29</b>
+              <span class="role as-human" data-i18n="role.coffee">Coffee Addict</span><span class="role as-robot">Mega Printer</span>
+            </span>
+            <span class="rate"><span class="as-human bad">0.0/s</span><span class="as-robot good">46.0/s</span></span>
+          </span>
+          <span class="stamp mark" aria-hidden="true" data-i18n="demo.stamp">Fired!</span>
+        </button>
+      </div>
+
+      <div class="hud" aria-live="polite">
+        <div class="hud-cell"><span class="lbl" data-i18n="hud.fired">People fired</span><b id="h-fired">0</b></div>
+        <div class="hud-cell"><span class="lbl" data-i18n="hud.out">Office output</span><b id="h-out">0.0/s</b></div>
+        <div class="hud-cell"><span class="lbl">CORA</span><b id="h-cora">8%</b><span class="meter"><i id="h-meter"></i></span></div>
+      </div>
+
+      <div class="done" id="demo-done" hidden>
+        <span data-i18n="demo.done">Fully automated. Output is way up, and CORA's eye is wide open.</span>
+        <button class="btn btn-sm" type="button" id="rehire" data-i18n="demo.rehire">Rehire everyone</button>
+      </div>
+    </div>
+    <p class="demo-hint" data-i18n="demo.hint">In the game you get one desk at a time, a quota, and a Board that's watching.</p>
+  </section>
+
+  <!-- FISCAL YEAR -->
+  <section class="wrap section" id="how">
+    <div class="sec-head">
+      <span class="eyebrow" data-i18n="fy.kicker">How a run works</span>
+      <h2 class="h2" data-i18n="fy.title">One run is one fiscal year.</h2>
+      <p class="lede" data-i18n="fy.lede">16 workdays in 4 quarters. The quota grows every day, and three times a year the Board shows up in person.</p>
+    </div>
+
+    <div class="fy" aria-hidden="true">
+      <div class="fy-q"><span class="fy-ql"><b>Q1</b> · <span data-i18n="q1">Seed Round</span></span><span class="fy-days"><i>1</i><i>2</i><i>3</i><i class="b">4</i></span></div>
+      <div class="fy-q"><span class="fy-ql"><b>Q2</b> · <span data-i18n="q2">Scale-Up</span></span><span class="fy-days"><i>5</i><i>6</i><i>7</i><i class="b">8</i></span></div>
+      <div class="fy-q"><span class="fy-ql"><b>Q3</b> · <span data-i18n="q3">Optimization</span></span><span class="fy-days"><i>9</i><i>10</i><i>11</i><i class="b">12</i></span></div>
+      <div class="fy-q"><span class="fy-ql"><b>Q4</b> · <span data-i18n="q4">Singularity</span></span><span class="fy-days"><i>13</i><i>14</i><i>15</i><i class="f">16</i></span></div>
+    </div>
+    <p class="legend">
+      <span><i class="key b"></i><span data-i18n="leg.board">Board Meeting</span></span>
+      <span><i class="key f"></i><span data-i18n="leg.final">CORA's Final Review</span></span>
+    </p>
+
+    <div class="fy-grid">
+      <ol class="timecard">
+        <li>
+          <span class="tc-time">9:00 AM</span>
+          <div><h3 data-i18n="fy.h1">The workday</h3><p data-i18n="fy.p1">Tap workers to motivate them. Wake the sleepers, break up the gossip, reboot the jammed printer. Overclock a machine when you're behind.</p></div>
+        </li>
+        <li>
+          <span class="tc-time">5:00 PM</span>
+          <div><h3 data-i18n="fy.h2">The Daily Report</h3><p data-i18n="fy.p2">Revenue rolls in desk by desk. Hit the quota and the Board keeps the money and pays you an allowance. Miss it and HR prints your letter.</p></div>
+        </li>
+        <li>
+          <span class="tc-time" data-i18n="fy.t3">After hours</span>
+          <div><h3 data-i18n="fy.h3">The shop</h3><p data-i18n="fy.p3">Buy robots, hire people, sign policies. Drop a robot on someone's desk and it replaces them.</p></div>
+        </li>
+        <li>
+          <span class="tc-time" data-i18n="fy.t4">Days 4 · 8 · 12</span>
+          <div><h3 data-i18n="fy.h4">Board Meeting</h3><p data-i18n="fy.p4">The quota jumps ×1.25 and one Board member's rule runs the day. The Consultant takes your weakest desk and bills you $50. Survive it and pick a perk.</p></div>
+        </li>
+        <li>
+          <span class="tc-time" data-i18n="fy.t5">Day 16</span>
+          <div><h3 data-i18n="fy.h5">Final Performance Review</h3><p data-i18n="fy.p5">CORA, the company AI, runs your last review. She has her own ideas about who is essential.</p></div>
+        </li>
+      </ol>
+
+      <figure class="side-fig">
+        <button class="shot-btn" type="button" data-shot="board-meeting">
+          <img src="img/board-meeting.png" width="1280" height="720" loading="lazy" alt="A Board Meeting card in the middle of the office: The Consultant, quota times 1.25 today" data-i18n-alt="alt.board">
+        </button>
+        <figcaption class="cap" data-i18n="fy.cap">Day 4. The Consultant took a desk for the day. That'll be $50.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="wrap section" style="padding-top:0">
+    <div class="feature">
+      <div class="f-copy">
+        <span class="eyebrow" data-i18n="f1.kicker">R&amp;D Catalog</span>
+        <h3 data-i18n="f1.title">Secret recipes</h3>
+        <p data-i18n="f1.body">Drop a robot on the right worker and they fuse. Some fusions are pure machine, others are a person with upgrades. There are ten recipes, and one you haven't found looks like a plain replacement until you try it.</p>
+        <div class="recipe"><span>Printer-3000</span><span class="op">+</span><span>Printer-3000</span><span class="op">=</span><span class="res">Mega Printer</span></div>
+        <div class="recipe"><span data-i18n="role.over">Overachiever</span><span class="op">+</span><span data-i18n="role.speaker">Motivational Speaker</span><span class="op">=</span><span class="res">Hustle Guru</span></div>
+      </div>
+      <figure class="side-fig">
+        <button class="shot-btn" type="button" data-shot="catalog">
+          <img src="img/catalog.png" width="1280" height="720" loading="lazy" alt="The R&amp;D Catalog with 4 of 10 fusion recipes found" data-i18n-alt="alt.catalog">
+        </button>
+        <figcaption class="cap" data-i18n="f1.cap">R&amp;D Catalog: 4 of 10 found.</figcaption>
+      </figure>
+    </div>
+
+    <div class="feature flip">
+      <div class="f-copy">
+        <span class="eyebrow" data-i18n="f2.kicker">Form HR-404</span>
+        <h3 data-i18n="f2.title">Fired by $3</h3>
+        <p data-i18n="f2.body">Miss one quota and the run ends with your Termination Letter. You keep the Shareholder Value you earned for permanent upgrades, copy the seed to replay the same office, and reapply.</p>
+      </div>
+      <figure class="side-fig">
+        <button class="shot-btn" type="button" data-shot="hr-404">
+          <img src="img/hr-404.png" width="1280" height="720" loading="lazy" alt="Notice of termination: missed quota by $3, You're fired stamp, Reapply button" data-i18n-alt="alt.letter">
+        </button>
+        <figcaption class="cap" data-i18n="f2.cap">Missed quota by $3 (0.05%). Escorted out by UNIT-60.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- CORA -->
+  <section class="cora section" id="cora">
+    <div class="wrap cora-in">
+      <div class="cora-copy">
+        <svg class="eye" viewBox="0 0 200 120" role="img" aria-label="CORA">
+          <defs><clipPath id="eye-clip"><path d="M8 60C40 14 160 14 192 60C160 106 40 106 8 60Z"/></clipPath></defs>
+          <path d="M8 60C40 14 160 14 192 60C160 106 40 106 8 60Z" style="fill:var(--cora-white)"/>
+          <g clip-path="url(#eye-clip)"><g id="iris">
+            <circle cx="100" cy="60" r="34" style="fill:var(--cora-eye)"/>
+            <circle cx="100" cy="60" r="15" style="fill:var(--cora-pupil)"/>
+            <circle cx="110" cy="50" r="5.5" style="fill:var(--cora-white)"/>
+          </g></g>
+          <path d="M8 60C40 14 160 14 192 60C160 106 40 106 8 60Z" style="fill:none;stroke:var(--cora-pupil);stroke-width:6"/>
+        </svg>
+        <span class="eyebrow" data-i18n="c.kicker">The company AI</span>
+        <h2 class="h2" data-i18n="c.title">CORA is watching.</h2>
+        <p data-i18n="c.p1">She's on from day one. Every machine you add opens her eye a little wider.</p>
+        <p data-i18n="c.p2">From the second quarter she sends Proposals: a free robot, printers that copy themselves. Each one is a great deal, and each one adds Control. On day 16, that Control decides how hard her Final Review gets.</p>
+        <p class="tease" data-i18n="c.tease">Somebody always gets fired in the end.</p>
+      </div>
+      <figure class="side-fig">
+        <button class="shot-btn" type="button" data-shot="cora">
+          <img src="img/cora.png" width="1280" height="720" loading="lazy" alt="An office full of robots under CORA: Compliance is Freedom poster, CORA at 100 percent" data-i18n-alt="alt.cora">
+        </button>
+        <figcaption class="cap" data-i18n="c.cap">Day 7. Every desk is a machine. Your title now reads LEGACY USER.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- STREAMERS -->
+  <section class="wrap section" id="streamers">
+    <div class="sec-head">
+      <span class="eyebrow" data-i18n="tw.kicker">For streamers</span>
+      <h2 class="h2" data-i18n="tw.title">Your chat works here.</h2>
+      <p class="lede" data-i18n="tw.lede">Type your Twitch channel in Settings and connect. No login and no bot account. Viewers take desks under their own names, and chat decides who goes.</p>
+    </div>
+
+    <div class="tw-grid">
+      <ul class="cmds">
+        <li><span class="pair"><code>!join</code><code>!unirme</code></span><span class="d" data-i18n="cmd.join">Take a desk. Extra viewers wait in the hiring queue.</span></li>
+        <li><span class="pair"><code>!fire 2</code><code>!despedir 2</code></span><span class="d" data-i18n="cmd.fire">Vote on who gets fired.</span></li>
+        <li><span class="pair"><code>!vote 1</code><code>!votar 1</code></span><span class="d" data-i18n="cmd.vote">Vote on the Board's agenda and on your perk.</span></li>
+        <li><span class="pair"><code>!unplug</code><code>!desenchufar</code></span><span class="d" data-i18n="cmd.unplug">Day 16: help pull CORA's plug.</span></li>
+        <li><span class="pair"><code>!sign 6</code><code>!cartel 6</code></span><span class="d" data-i18n="cmd.sign">Fired viewers picket outside the window.</span></li>
+        <li><span class="pair"><code>!egg 7</code><code>!huevo 7</code></span><span class="d" data-i18n="cmd.egg">Chaos mode only: fired viewers egg a desk.</span></li>
+      </ul>
+
+      <div class="tw-side">
+        <div class="vote" id="vote">
+          <div class="vote-top"><b data-i18n="vote.title">Chat: who gets fired?</b><span class="vote-time" id="v-time">7s</span></div>
+          <span class="vote-hint" data-i18n="vote.hint">!fire &lt;name&gt; or the number · !despedir</span>
+          <div class="vrow lead"><span class="idx">1</span><span class="vbar"><i style="width:100%"></i><span>xX_Ninja_Xx</span></span><span class="n">4</span></div>
+          <div class="vrow"><span class="idx">2</span><span class="vbar"><i style="width:75%"></i><span>MemoPigeon1</span></span><span class="n">3</span></div>
+          <div class="vrow"><span class="idx">3</span><span class="vbar"><i style="width:75%"></i><span>grumpy_toaster</span></span><span class="n">3</span></div>
+          <div class="vrow"><span class="idx">4</span><span class="vbar"><i style="width:50%"></i><span>SynergyLurker</span></span><span class="n">2</span></div>
+          <p class="vote-res" id="v-res" hidden></p>
+        </div>
+
+        <div class="picket" aria-hidden="true">
+          <span class="sign" data-i18n="tw.sign">Staplers are not people</span>
+          <span class="stick"></span>
+          <span class="sign-by"><b>grumpy_toaster</b>, <span data-i18n="tw.former">former employee</span></span>
+        </div>
+      </div>
+    </div>
+    <p class="tw-note" data-i18n="tw.note">Chat is friendly by default, and Chaos mode is opt-in. Viewers your mods ban or time out leave the office on their own, and you can hide anyone with a right-click.</p>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="wrap section" id="gallery" style="padding-top:0">
+    <div class="sec-head">
+      <span class="eyebrow" data-i18n="g.kicker">Prototype screens</span>
+      <h2 class="h2" data-i18n="g.title">Your office, so far.</h2>
+      <p class="lede" data-i18n="g.lede">Straight from the current build. Tap one to see it full size.</p>
+    </div>
+    <ul class="gallery">
+      <li><button class="shot-btn" type="button" data-key="day-one"><img src="img/day-one.png" width="1280" height="720" loading="lazy" alt="Day 1 in the office: workers asleep, on a coffee break and gossiping, and a broken printer" data-i18n-alt="alt.dayone"></button><span class="cap" data-i18n="cap.dayone">Day 1: naps, coffee and gossip</span></li>
+      <li><button class="shot-btn" type="button" data-key="stamp"><img src="img/stamp.png" width="1280" height="720" loading="lazy" alt="The FIRED! stamp landing on a desk" data-i18n-alt="alt.stamp"></button><span class="cap" data-i18n="cap.stamp">The FIRED! stamp</span></li>
+      <li><button class="shot-btn" type="button" data-key="board-meeting"><img src="img/board-meeting.png" width="1280" height="720" loading="lazy" alt="A Board Meeting card in the middle of the office: The Consultant, quota times 1.25 today" data-i18n-alt="alt.board"></button><span class="cap" data-i18n="cap.board">Board Meeting: The Consultant</span></li>
+      <li><button class="shot-btn" type="button" data-key="catalog"><img src="img/catalog.png" width="1280" height="720" loading="lazy" alt="The R&amp;D Catalog with 4 of 10 fusion recipes found" data-i18n-alt="alt.catalog"></button><span class="cap" data-i18n="cap.catalog">R&amp;D Catalog</span></li>
+      <li><button class="shot-btn" type="button" data-key="cora"><img src="img/cora.png" width="1280" height="720" loading="lazy" alt="An office full of robots under CORA: Compliance is Freedom poster, CORA at 100 percent" data-i18n-alt="alt.cora"></button><span class="cap" data-i18n="cap.cora">CORA takes over</span></li>
+      <li><button class="shot-btn" type="button" data-key="hr-404"><img src="img/hr-404.png" width="1280" height="720" loading="lazy" alt="Notice of termination: missed quota by $3, You're fired stamp, Reapply button" data-i18n-alt="alt.letter"></button><span class="cap" data-i18n="cap.letter">Form HR-404</span></li>
+    </ul>
+  </section>
+
+  <!-- RELEASE FORM -->
+  <section class="wrap section" style="padding-top:0">
+    <div class="form">
+      <span class="stamp form-stamp" aria-hidden="true">2027</span>
+      <span class="eyebrow" data-i18n="r.kicker">Release request · Form RL-2027</span>
+      <h2 class="h2" data-i18n="r.title">Coming in 2027.</h2>
+      <dl class="fields">
+        <div class="field">
+          <dt data-i18n="r.platL">Platforms</dt>
+          <dd class="checks">
+            <span class="check"><i class="box"></i>PC (Steam)</span>
+            <span class="check"><i class="box"></i>Steam Deck</span>
+            <span class="check"><i class="box"></i>iPhone</span>
+            <span class="check"><i class="box"></i>Android</span>
+          </dd>
+        </div>
+        <div class="field"><dt data-i18n="r.dateL">Launch</dt><dd data-i18n="r.date">Same day on every platform.</dd></div>
+        <div class="field"><dt data-i18n="r.priceL">Price</dt><dd data-i18n="r.price">One price. No ads, no microtransactions.</dd></div>
+        <div class="field"><dt data-i18n="r.demoL">Demo</dt><dd data-i18n="r.demo">Planned for Steam Next Fest, February 2027.</dd></div>
+        <div class="field"><dt data-i18n="r.langL">Languages</dt><dd data-i18n="r.lang">English at launch, with Spanish and Chinese planned.</dd></div>
+      </dl>
+      <div class="form-foot">
+        <button class="btn btn-steam" type="button" disabled>
+          <span data-i18n="cta.wish">Wishlist on Steam</span>
+          <small data-i18n="cta.soon">Coming soon</small>
+        </button>
+        <p data-i18n="r.note">The wishlist button turns on the day the Steam page opens.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <p class="fine" data-i18n="foot.proto">Prototype. The game's art, text and sounds are placeholders until human artists and writers replace them.</p>
+    <p data-i18n="foot.godot">Made with the Godot Engine.</p>
+    <p>© 2026 We’re Letting You Go</p>
+  </div>
+</footer>
+</div>
+
+<dialog class="lb" id="lb" aria-labelledby="lb-cap">
+  <div class="lb-in">
+    <img id="lb-img" src="img/day-one.png" alt="" width="1280" height="720">
+    <div class="lb-bar">
+      <button class="icon-btn" type="button" id="lb-prev" data-i18n-aria="lb.prev" aria-label="Previous screen">‹</button>
+      <p id="lb-cap"></p>
+      <button class="icon-btn" type="button" id="lb-next" data-i18n-aria="lb.next" aria-label="Next screen">›</button>
+      <button class="icon-btn" type="button" id="lb-close" data-i18n-aria="lb.close" aria-label="Close">×</button>
+    </div>
+  </div>
+</dialog>
+
+<script>
+(function () {
+  "use strict";
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- language ---------- */
+  var ES = {
+    "nav.try": "Prueba el sello", "nav.how": "Cómo se juega", "nav.tw": "Streamers", "nav.gal": "Pantallas",
+    "memo.form": "Memo interno · Formulario RH-001", "memo.toL": "Para:", "memo.to": "Todo el personal",
+    "memo.fromL": "De:", "memo.from": "El Consejo", "memo.reL": "Asunto:", "memo.re": "Reestructuración",
+    "tagline": "Un roguelite de automatizar la oficina",
+    "pitch": "Eres el nuevo gerente de una empresa en apuros. El Consejo exige una cuota más grande cada día. Tus empleados son lentos, adorables y caóticos. <strong>Despídelos y reemplázalos por robots.</strong> ¿Qué podría salir mal?",
+    "cta.wish": "Añadir a deseados en Steam", "cta.soon": "Muy pronto", "cta.try": "Prueba el sello",
+    "plat.lbl": "Llega en 2027 a",
+    "alt.dayone": "Día 1 en la oficina: empleados dormidos, en el café y chismeando, y una impresora averiada",
+    "hero.cap": "Día 1, 9:45 AM. Cuota: $800. Uno dormido, dos tomando café, una chismeando y la impresora caída.",
+    "demo.kicker": "Evaluación de desempeño", "demo.title": "Toma el sello.",
+    "demo.lede": "Ahora mismo nadie en este piso está trabajando. Toca a un empleado para despedirlo y un robot ocupa su escritorio. Los robots no duermen, no chismean y no toman café. Casi nunca.",
+    "demo.sr": "Despedir:", "st.asleep": "Dormido", "st.gossip": "Chisme", "st.break": "Café", "st.new": "¡Nuevo!",
+    "demo.gossip": "¿¡Ya supiste!?", "demo.brb": "Ya vuelvo",
+    "role.over": "Sobresaliente", "role.gossip": "Chismosa", "role.coffee": "Adicto al café", "role.speaker": "Orador motivacional",
+    "demo.stamp": "¡Despedido!", "hud.fired": "Despedidos", "hud.out": "Producción",
+    "demo.done": "Oficina 100% automatizada. La producción se disparó y CORA tiene el ojo bien abierto.",
+    "demo.rehire": "Recontratar a todos",
+    "demo.hint": "En el juego vas escritorio por escritorio, con una cuota y un Consejo que te vigila.",
+    "fy.kicker": "Cómo funciona una partida", "fy.title": "Cada partida es un año fiscal.",
+    "fy.lede": "16 días laborales en 4 trimestres. La cuota sube cada día y tres veces al año el Consejo llega en persona.",
+    "q1": "Ronda semilla", "q2": "Expansión", "q3": "Optimización", "q4": "Singularidad",
+    "leg.board": "Reunión del Consejo", "leg.final": "Evaluación final de CORA",
+    "fy.h1": "La jornada", "fy.p1": "Toca a tus empleados para motivarlos. Despierta a los dormidos, disuelve el chisme, reinicia la impresora trabada. Acelera una máquina si vas atrasado.",
+    "fy.h2": "El reporte diario", "fy.p2": "Los ingresos llegan escritorio por escritorio. Si cumples la cuota, el Consejo se queda con el dinero y te paga una mesada. Si no, Recursos Humanos imprime tu carta.",
+    "fy.t3": "Después de hora", "fy.h3": "La tienda", "fy.p3": "Compra robots, contrata gente, firma políticas. Suelta un robot en el escritorio de alguien y lo reemplaza.",
+    "fy.t4": "Días 4 · 8 · 12", "fy.h4": "Reunión del Consejo", "fy.p4": "La cuota sube ×1.25 y la regla de un miembro del Consejo manda todo el día. El Consultor se sienta en tu peor escritorio y te cobra $50. Sobrevive y elige una ventaja.",
+    "fy.t5": "Día 16", "fy.h5": "Evaluación final de desempeño", "fy.p5": "CORA, la IA de la empresa, hace tu última evaluación. Tiene sus propias ideas sobre quién es indispensable.",
+    "alt.board": "Una tarjeta de Reunión del Consejo en medio de la oficina: el Consultor, cuota ×1.25 hoy",
+    "fy.cap": "Día 4. El Consultor tomó un escritorio por hoy. Son $50.",
+    "f1.kicker": "Catálogo de I+D", "f1.title": "Recetas secretas",
+    "f1.body": "Suelta un robot sobre el empleado correcto y se fusionan. Algunas fusiones son pura máquina; otras, una persona con mejoras. Hay diez recetas, y una que no has descubierto parece un reemplazo normal hasta que la pruebas.",
+    "alt.catalog": "El Catálogo de I+D con 4 de 10 recetas de fusión encontradas", "f1.cap": "Catálogo de I+D: 4 de 10 encontradas.",
+    "f2.kicker": "Formulario HR-404", "f2.title": "Despedido por $3",
+    "f2.body": "Si fallas una sola cuota, la partida termina con tu Carta de Despido. Te quedas con el Valor para el Accionista que ganaste para mejoras permanentes, copias la semilla para repetir la misma oficina y vuelves a postularte.",
+    "alt.letter": "Aviso de despido: faltaron $3 para la cuota, sello de despedido y botón para volver a postularse",
+    "f2.cap": "Faltaron $3 para la cuota (0.05%). Te escolta a la salida UNIT-60.",
+    "c.kicker": "La IA de la empresa", "c.title": "CORA te está mirando.",
+    "c.p1": "Está encendida desde el primer día. Cada máquina que agregas le abre un poco más el ojo.",
+    "c.p2": "Desde el segundo trimestre te manda Propuestas: un robot gratis, impresoras que se copian solas. Cada una es una ganga y cada una suma Control. El día 16, ese Control decide qué tan dura es su Evaluación Final.",
+    "c.tease": "Al final, siempre despiden a alguien.",
+    "alt.cora": "Una oficina llena de robots bajo CORA: póster de «Cumplir es libertad», CORA al 100%",
+    "c.cap": "Día 7. Todos los escritorios son máquinas. Tu puesto ahora dice LEGACY USER.",
+    "tw.kicker": "Para streamers", "tw.title": "Tu chat trabaja aquí.",
+    "tw.lede": "Escribe tu canal de Twitch en Ajustes y conecta. Sin iniciar sesión ni cuenta de bot. Los viewers ocupan escritorios con su propio nombre y el chat decide quién se va.",
+    "cmd.join": "Ocupa un escritorio. Los demás esperan en la fila de contratación.",
+    "cmd.fire": "Vota a quién despedir.", "cmd.vote": "Vota la agenda del Consejo y tu ventaja.",
+    "cmd.unplug": "Día 16: ayuda a desenchufar a CORA.", "cmd.sign": "Los despedidos protestan afuera de la ventana.",
+    "cmd.egg": "Solo en modo Caos: los despedidos le tiran un huevo a un escritorio.",
+    "vote.title": "Chat: ¿a quién despedimos?", "vote.hint": "!despedir <nombre> o el número · !fire",
+    "tw.sign": "Las engrapadoras no son personas", "tw.former": "ex empleado",
+    "tw.note": "El chat es amigable por defecto y el modo Caos es opcional. Si tus mods banean o silencian a alguien, sale de la oficina solo, y puedes ocultar a cualquiera con clic derecho.",
+    "g.kicker": "Pantallas del prototipo", "g.title": "Tu oficina, por ahora.", "g.lede": "Directo de la versión actual. Toca una para verla en grande.",
+    "alt.stamp": "El sello FIRED! cayendo sobre un escritorio",
+    "cap.dayone": "Día 1: siestas, café y chisme", "cap.stamp": "El sello FIRED!",
+    "cap.board": "Reunión del Consejo: el Consultor", "cap.catalog": "Catálogo de I+D", "cap.cora": "CORA toma el control", "cap.letter": "Formulario HR-404",
+    "r.kicker": "Solicitud de lanzamiento · Formulario RL-2027", "r.title": "Llega en 2027.",
+    "r.platL": "Plataformas", "r.dateL": "Lanzamiento", "r.date": "El mismo día en todas las plataformas.",
+    "r.priceL": "Precio", "r.price": "Un solo pago. Sin anuncios ni microtransacciones.",
+    "r.demoL": "Demo", "r.demo": "Planeada para el Steam Next Fest de febrero de 2027.",
+    "r.langL": "Idiomas", "r.lang": "Inglés al lanzar; español y chino en camino.",
+    "r.note": "El botón de deseados se activa el día que abra la página de Steam.",
+    "foot.proto": "Prototipo. El arte, los textos y los sonidos del juego son provisionales hasta que artistas y escritores humanos los reemplacen.",
+    "foot.godot": "Hecho con Godot Engine.",
+    "lb.prev": "Pantalla anterior", "lb.next": "Pantalla siguiente", "lb.close": "Cerrar",
+    "js.fired": "Despedido:"
+  };
+  var EN = { "js.fired": "Fired:" };
+  $$("[data-i18n]").forEach(function (el) { if (!(el.dataset.i18n in EN)) EN[el.dataset.i18n] = el.textContent; });
+  $$("[data-i18n-html]").forEach(function (el) { EN[el.dataset.i18nHtml] = el.innerHTML; });
+  $$("[data-i18n-alt]").forEach(function (el) { if (!(el.dataset.i18nAlt in EN)) EN[el.dataset.i18nAlt] = el.alt; });
+  $$("[data-i18n-aria]").forEach(function (el) { EN[el.dataset.i18nAria] = el.getAttribute("aria-label"); });
+  var DICT = { en: EN, es: ES };
+  var lang = "en";
+  function t(k) { var v = DICT[lang][k]; return v != null ? v : (EN[k] != null ? EN[k] : k); }
+
+  function setLang(l, save) {
+    lang = l === "es" ? "es" : "en";
+    document.documentElement.lang = lang;
+    $$("[data-i18n]").forEach(function (el) { el.textContent = t(el.dataset.i18n); });
+    $$("[data-i18n-html]").forEach(function (el) { el.innerHTML = t(el.dataset.i18nHtml); });
+    $$("[data-i18n-alt]").forEach(function (el) { el.alt = t(el.dataset.i18nAlt); });
+    $$("[data-i18n-aria]").forEach(function (el) { el.setAttribute("aria-label", t(el.dataset.i18nAria)); });
+    $$(".lang button").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.lang === lang)); });
+    renderVote();
+    if (lb.open) fillLightbox();
+    if (save) { try { localStorage.setItem("fta-lang", lang); } catch (e) {} }
+  }
+  $$(".lang button").forEach(function (b) { b.addEventListener("click", function () { setLang(b.dataset.lang, true); }); });
+
+  /* ---------- stamp demo ---------- */
+  var desks = $$(".desk");
+  var CORA = [8, 38, 69, 100];
+  function hud() {
+    var fired = desks.filter(function (d) { return d.classList.contains("fired"); });
+    var out = fired.reduce(function (s, d) { return s + parseFloat(d.dataset.rate); }, 0);
+    var c = CORA[fired.length];
+    $("#h-fired").textContent = fired.length;
+    $("#h-out").textContent = out.toFixed(1) + "/s";
+    $("#h-cora").textContent = c + "%";
+    $("#h-meter").style.width = c + "%";
+    $("#demo-done").hidden = fired.length < desks.length;
+  }
+  desks.forEach(function (d) {
+    d.addEventListener("click", function () {
+      if (d.classList.contains("fired") || d.classList.contains("stamping")) return;
+      if (reduce) { d.classList.add("fired"); d.setAttribute("aria-disabled", "true"); hud(); return; }
+      d.classList.add("stamping");
+      setTimeout(function () {
+        d.classList.remove("stamping");
+        d.classList.add("fired");
+        d.setAttribute("aria-disabled", "true");
+        hud();
+      }, 700);
+    });
+  });
+  $("#rehire").addEventListener("click", function () {
+    desks.forEach(function (d) { d.classList.remove("fired"); d.removeAttribute("aria-disabled"); });
+    hud();
+    desks[0].focus();
+  });
+
+  /* ---------- chat vote ---------- */
+  var NAMES = ["xX_Ninja_Xx", "MemoPigeon1", "grumpy_toaster", "SynergyLurker"];
+  var votes = [4, 3, 3, 2], left = 7, winner = null, hold = 0;
+  var rows = $$(".vote .vrow");
+  function renderVote() {
+    var max = Math.max.apply(null, votes) || 1;
+    rows.forEach(function (r, i) {
+      $(".n", r).textContent = votes[i];
+      $(".vbar i", r).style.width = (votes[i] / max * 100) + "%";
+      r.classList.toggle("lead", votes[i] === max);
+    });
+    $("#v-time").textContent = left + "s";
+    var res = $("#v-res");
+    res.hidden = !winner;
+    res.textContent = winner ? t("js.fired") + " " + winner : "";
+  }
+  function step() {
+    if (hold > 0) {
+      hold--;
+      if (hold === 0) { winner = null; votes = [1, 0, 1, 0]; left = 15; }
+      renderVote();
+      return;
+    }
+    var n = 1 + Math.floor(Math.random() * 3);
+    for (var k = 0; k < n; k++) votes[Math.floor(Math.random() * 4)]++;
+    left--;
+    if (left <= 0) {
+      left = 0;
+      var m = Math.max.apply(null, votes);
+      winner = NAMES[votes.indexOf(m)];
+      hold = 4;
+    }
+    renderVote();
+  }
+  var voteTimer = null;
+  function runVote(on) {
+    if (on && !voteTimer) voteTimer = setInterval(step, 1000);
+    if (!on && voteTimer) { clearInterval(voteTimer); voteTimer = null; }
+  }
+  if (!reduce && "IntersectionObserver" in window) {
+    new IntersectionObserver(function (es) { runVote(es[0].isIntersecting); }, { threshold: 0.2 }).observe($("#vote"));
+  }
+
+  /* ---------- CORA's eye ---------- */
+  var iris = $("#iris"), eye = $(".eye");
+  if (!reduce && iris && eye) {
+    var px = 0, py = 0, raf = 0;
+    window.addEventListener("pointermove", function (e) {
+      px = e.clientX; py = e.clientY;
+      if (raf) return;
+      raf = requestAnimationFrame(function () {
+        raf = 0;
+        var r = eye.getBoundingClientRect();
+        var dx = px - (r.left + r.width / 2), dy = py - (r.top + r.height / 2);
+        var d = Math.hypot(dx, dy) || 1, k = Math.min(1, d / 260);
+        iris.style.transform = "translate(" + (dx / d * 30 * k).toFixed(1) + "px," + (dy / d * 12 * k).toFixed(1) + "px)";
+      });
+    }, { passive: true });
+  }
+
+  /* ---------- lightbox ---------- */
+  var lb = $("#lb"), lbImg = $("#lb-img"), lbCap = $("#lb-cap");
+  var gal = $$(".gallery .shot-btn");
+  var cur = 0;
+  function fillLightbox() {
+    var b = gal[cur], img = $("img", b);
+    lbImg.src = img.getAttribute("src");
+    lbImg.alt = img.alt;
+    lbCap.textContent = $(".cap", b.parentNode).textContent;
+  }
+  function openAt(i) {
+    cur = (i + gal.length) % gal.length;
+    fillLightbox();
+    if (!lb.open) { if (lb.showModal) lb.showModal(); else lb.setAttribute("open", ""); }
+  }
+  function closeLb() { if (lb.close) lb.close(); else lb.removeAttribute("open"); }
+  gal.forEach(function (b, i) { b.addEventListener("click", function () { openAt(i); }); });
+  $$("[data-shot]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var i = gal.findIndex(function (g) { return g.dataset.key === b.dataset.shot; });
+      openAt(i < 0 ? 0 : i);
+    });
+  });
+  $("#lb-prev").addEventListener("click", function () { openAt(cur - 1); });
+  $("#lb-next").addEventListener("click", function () { openAt(cur + 1); });
+  $("#lb-close").addEventListener("click", closeLb);
+  lb.addEventListener("click", function (e) { if (e.target === lb) closeLb(); });
+  lb.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowLeft") openAt(cur - 1);
+    if (e.key === "ArrowRight") openAt(cur + 1);
+  });
+
+  /* ---------- start ---------- */
+  var saved = null;
+  try { saved = localStorage.getItem("fta-lang"); } catch (e) {}
+  var nav = (navigator.language || "en").toLowerCase();
+  setLang(saved || (nav.indexOf("es") === 0 ? "es" : "en"), false);
+  hud();
+})();
+</script>
+</body>
+</html>
